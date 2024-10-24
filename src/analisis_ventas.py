@@ -8,6 +8,7 @@ df= pd.read_excel('C:/Users/U-0393/Desktop/S.MORALES/PRACTICAS GITHUB/DATA SCIEN
 #Mostrar los primeros registros
 print(df.head())
 
+
 #Agrupar por producto y sumar las ventas
 ventas_por_producto = df.groupby('Producto')['Ventas'].sum().reset_index()
 
@@ -21,3 +22,12 @@ print(ventas_por_producto)
 sns.barplot(x='Producto', y='Ventas', data=ventas_por_producto)
 plt.title('Ventas Totales Por Producto')
 plt.show()
+
+#Verificar si hay datos faltantes en el DataFrame
+df.issnull().sum()
+
+#Rellenar los valores faltantes en la columna "precio" con la media
+precio_promedio=df['precio'].mean()
+df['precio'].fillna(precio_promedio, inplace=True)
+
+
